@@ -98,11 +98,10 @@ class Rectangle(Base):
         return (self.__height * self.__width)
 
     def display(self):
-        """ diplay the rect using # """
+        """ diplay the rect using # char """
         chong = self.y * "\n"
         for siphan in range(self.height):
-            chong += (" " * self.x)
-            chong += ("#" * self.width) + "\n"
+            chong += " " * self.x + "#" * self.width + "\n"
         print(chong, end="")
 
     def __str__(self):
