@@ -92,3 +92,15 @@ class Rectangle(Base):
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
+
+    def area(self):
+        """ to define rectangle area """
+        return (self.__height * self.__width)
+
+    def display(self):
+        """ diplay the rect using # """
+        chong = self.y * "\n"
+        for siphan in range(self.height):
+            chong += (" " * self.x)
+            chong += ("#" * self.width) + "\n"
+        print(chong, end="")
