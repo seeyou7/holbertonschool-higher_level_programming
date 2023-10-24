@@ -104,3 +104,6 @@ class Rectangle(Base):
             chong += (" " * self.x)
             chong += ("#" * self.width) + "\n"
         print(chong, end="")
+
+    def __str__(self):
+        return f"[Rectangle] ({self.id}) {self.x}/{self.y} -  {self.width}/{self.height}"
