@@ -58,9 +58,16 @@ class Base:
     def load_from_file(cls):
         """ returns a list of instances """
         filename = cls.__name__ + ".json"
-        if not path.exists(filename):
-            return []
-        with open(filename, "r", encoding="utf-8") as file:
-            obj = Base.from_json_string(file.read())
-        list = [cls.create(**dict) for dict in obj]
-        return list
+        instances = []
+
+    try:
+        with open(filename, "r") as file:
+            json_str = file.read()
+        data = cls.from_json_string(json_str)
+        for item in data:
+            instance = cls.create(**item)
+            instances.append(instance)
+    except FileNotFoundError:
+        pass
+
+        return instances
