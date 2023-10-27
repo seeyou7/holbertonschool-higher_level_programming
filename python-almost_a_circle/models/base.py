@@ -19,4 +19,7 @@ class Base:
 
     def to_json_string(list_dictionaries):
         """ static methoode that return representation of list dict """
-        return json.dumps(list_dictionaries)
+        if list_dictionaries is None:
+            return "[]"
+        else:
+            return json.dumps(list_dictionaries)
