@@ -1,18 +1,32 @@
 #!/usr/bin/python3
-""" script that takes in an argument and displays all values in the states
-table of hbtn_0e_0_usa where name matches the argument """
-
-import MySQLdb
+"""Lists all states from the database hbtn_0e_0_us """
 import sys
-
+import MySQLdb
 
 if __name__ == "__main__":
-    conn = MySQLdb.connect(host="localhost", port=3306, user=sys.argv[1],
-                           passwd=sys.argv[2], db=sys.argv[3])
-    with conn.cursor() as cur:
-        cur.execute("SELECT * FROM states WHERE name = '{}'\
-                ORDER BY id ".format(sys.argv[4]))
-        for row in cur.fetchall():
-            print(row)
+    # Check if the expected number of command-line arguments is provided
+    if len(sys.argv) != 5:
+        print("Usage: ./1-filter_states.py <username> <password> <database>")
+        sys.exit(1)
 
-    conn.close()
+    username: str = sys.argv[1]
+    password: str = sys.argv[2]
+    db_name: str = sys.argv[3]
+    s_n: str = sys.argv[4]
+    host: str = "localhost"
+    port: int = 3306
+    s: str = "SELECT * FROM states WHERE name = '{}' ORDER BY id".format(s_n)
+
+    db = MySQLdb.connect(
+        user=username,
+        host=host,
+        port=port,
+        password=password,
+        database=db_name,
+    )
+    cursor = db.cursor()
+    cursor.execute(s)
+    rows = cursor.fetchall()
+
+    for row in rows:
+        print(row)
