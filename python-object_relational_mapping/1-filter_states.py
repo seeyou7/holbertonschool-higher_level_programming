@@ -23,4 +23,3 @@ if __name__ == "__main__":
             if ('N' in row[1]):
                 print(row)
     conn.close()
-
