@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""script that prints the State object
-with the name passed as argument
-from the database hbtn_0e_6_usa"""
+"""script that prints the State object with the name passed as argument from the database hbtn_0e_6_usa"""
 
 import sys
 from sqlalchemy import create_engine
@@ -18,4 +16,5 @@ if __name__ == "__main__":
     state = session_encap.query(State).filter_by(name=state_name).first()
     print("{}: {}".format(state.id)
           if state is not None else "Not found")
+
     session_encap.close()
